@@ -8,7 +8,7 @@ import subprocess
 file_name = "monitor.data"
 timeout = 10
 st = speedtest.Speedtest()
-#st.set_mini_server("byfly.by")
+#st.get_best_server(st.set_mini_server("http://speedtest.test.fr/"))
 #st.get_best_server()
 
 while 1:
@@ -18,8 +18,8 @@ while 1:
     download = "{0:>20}".format(st.download())
     upload = "{0:>20}".format(st.upload())
     ping = "{0:>5}".format(st.results.ping)
-    f.writelines("%s. d/u/p = %s / %s / %s\n" % (data, download, upload, ping))
-    print("%s. d/u/p = %s / %s / %s\n" % (data, download, upload, ping))
+    f.writelines("%s. d/u/p = %s / %s / %s : %s\n" % (data, download, upload, ping, st.get_best_server()))
+    print("%s. d/u/p = %s / %s / %s : %s \n" % (data, download, upload, ping, st.get_best_server()))
 
     f.close()
 
